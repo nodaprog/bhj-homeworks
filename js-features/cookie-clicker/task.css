@@ -1,0 +1,16 @@
+* {
+    font-family: sans-serif;
+}
+
+.clicker {
+    text-align: center;
+}
+
+.clicker__cookie {
+    margin: 40px;
+}
+
+
+#clicker__counter {
+    font-weight: 700;
+}
