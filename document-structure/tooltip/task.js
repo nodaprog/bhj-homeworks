@@ -1,26 +1,33 @@
 'use strict';
 
-const tooltips = document.querySelectorAll('.has-tooltip');
+const tooltip = document.querySelectorAll('.has-tooltip');
 
-tooltips.forEach((elem) => {
+tooltip.forEach(elem => {
+    let title = elem.getAttribute('title');
+    let div = document.createElement('div');
+    
+    div.className = 'tooltip';
+    div.innerText = title;
+    
+    elem.appendChild(div);
+    
     elem.addEventListener('click', (evt) => {
         evt.preventDefault();
-        const active = document.querySelector('.tooltip_active');
 
-        if (active) {
-            active.remove();
-        }
-
-        const getElemCoords = elem.getBoundingClientRect();
-
-        let div = document.createElement('div');
-        div.innerText = elem.getAttribute('title');
-        div.className = 'tooltip';
-        div.classList.add('tooltip_active');
-
+        let getElemCoords = elem.getBoundingClientRect();
         div.style.top = getElemCoords.top + 20 + 'px';
         div.style.left = getElemCoords.left + 'px';
 
-        elem.appendChild(div);
-    });
-});
+        let active = document.querySelector('.tooltip_active');
+        
+        if (active) 
+        {
+            active.classList.remove('tooltip_active');
+        }
+        else
+        {
+            div.classList.toggle('tooltip_active');
+        }
+        
+    })
+})
